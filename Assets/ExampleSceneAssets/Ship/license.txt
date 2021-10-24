@@ -1,0 +1,10 @@
+This work is based on "Allen M Sumner" (https://sketchfab.com/3d-models/allen-m-sumner-5234660b4b4949d6b9d30c6d204b9536) by ThomasBeerens (https://sketchfab.com/ThomasBeerens) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+
+Model Information:
+* title:	Allen M Sumner
+* source:	https://sketchfab.com/3d-models/allen-m-sumner-5234660b4b4949d6b9d30c6d204b9536
+* author:	ThomasBeerens (https://sketchfab.com/ThomasBeerens)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
