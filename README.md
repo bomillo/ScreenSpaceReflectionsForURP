@@ -1,6 +1,6 @@
 
  # ScreenSpaceReflection for URP
-Simplistic SSR implementation for forward renderer of URP. Can be used only for **othrographic** projection and due to lack of smothness information it uses diffrent method of defining which surface is reflective (reflects only on pixels which Y position equals 0).
+Simplistic SSR implementation for forward renderer of URP. Can be used only for **othrographic** projection and due to lack of smothness information it uses diffrent method of defining which surface is reflective (reflects only on pixels which Y position equals 0). It's made with Unity 2021.1.24f1.
 
 <p align="center"> 
     <img src="./SSR_ship.PNG">

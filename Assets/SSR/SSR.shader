@@ -73,7 +73,7 @@ Shader "Hidden/ScreenSpaceReflections"
             #pragma exclude_renderers d3d11_9x
             #pragma exclude_renderers d3d9
             #pragma vertex VertDefault
-            #pragma fragment SSR_APPLYWITHBLUR
+            #pragma fragment SSR_APPLY
             #include "./SSR.hlsl"
             ENDHLSL
         }

@@ -69,11 +69,7 @@ float4 Color(float2 uv) {
     return SAMPLE_BASEMAP(uv);
 }
 
-uint2 UVtoScreenPixel(float2 uv) {
-    return uint2((uint)(uv.x * SCREENWIDTH), (uint)(uv.y * SCREENHEIGHT));
-}
-
-float4 Reflect(float2 uv) {
+float4 FindReflectedColor(float2 uv) {
     float3 normal = SampleSceneNormals(uv).xyz;
     float angle =-( PI2 - (2 * asin(length(normal.xy) + 0.0001)));
 
@@ -120,7 +116,7 @@ float4 Reflect(float2 uv) {
 }
 
 
-float4 Main(float2 uv){
+float4 MainSSR(float2 uv){
     float camAngle =  asin(abs(normalize(mul((float3x3)unity_CameraToWorld, float3(0, 0, 1))).y));
 
     float minY = _WorldSpaceCameraPos.y - unity_OrthoParams.y * sin(PI2 - camAngle);
@@ -132,20 +128,13 @@ float4 Main(float2 uv){
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
-    int2 pixel = UVtoScreenPixel(uv);
-    if (pixel.y == SCREENHEIGHT-1 || pixel.y==0) {
-        return float4(0.0, 0.0, 0, 0.0);
-    }
-
-    return Reflect(uv);
+    return FindReflectedColor(uv);
 }
 
 
 float4 SSR(Varyings input) : SV_Target
 {
-    float2 uv = input.uv;
-    float4 color = SAMPLE_BASEMAP(uv);
-    float4 reflection = Main(uv);
+    float4 reflection = MainSSR(input.uv);
 
     if (reflection.a!= 0) {
         return reflection;
@@ -153,11 +142,10 @@ float4 SSR(Varyings input) : SV_Target
     return float4(0,0,0,0);
 }
 
-float4 SSR_APPLYWITHBLUR(Varyings input) : SV_Target
+float4 SSR_APPLY(Varyings input) : SV_Target
 {
-    float2 uv = input.uv;
-    float4 color = SAMPLE_BASEMAP(uv);
-    float4 reflection = SAMPLE_SSR(uv);
+    float4 color = SAMPLE_BASEMAP(input.uv);
+    float4 reflection = SAMPLE_SSR(input.uv);
 
     return color + reflection* reflection.a * INTENSITY;
 }
